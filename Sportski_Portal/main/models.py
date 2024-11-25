@@ -7,6 +7,11 @@ class Natjecanje(models.Model):
 
     def __str__(self):
         return self.naziv
+    
+    class Meta:
+        db_table = "natjecanje"
+        verbose_name = "Natjecanje"
+        verbose_name_plural = "Natjecanja"
 
 class Tim(models.Model):
     naziv = models.CharField(max_length=200)
@@ -15,6 +20,11 @@ class Tim(models.Model):
 
     def __str__(self):
         return self.naziv
+    
+    class Meta:
+        db_table = "tim"
+        verbose_name = "Tim"
+        verbose_name_plural = "Timovi"
 
 class Utakmica(models.Model):
     natjecanje = models.ForeignKey(Natjecanje, on_delete=models.CASCADE, related_name='utakmice')
@@ -26,6 +36,11 @@ class Utakmica(models.Model):
 
     def __str__(self):
         return f"{self.tim1} vs {self.tim2} - {self.datum}"
+    
+    class Meta:
+        db_table = "utakmica"
+        verbose_name = "Utakmica"
+        verbose_name_plural = "Utakmice"
 
 class Igrac(models.Model):
     ime = models.CharField(max_length=100)
@@ -35,3 +50,8 @@ class Igrac(models.Model):
 
     def __str__(self):
         return f"{self.ime} {self.prezime} ({self.tim})"
+    
+    class Meta:
+        db_table = "igrac"
+        verbose_name = "Igrac"
+        verbose_name_plural = "Igraci"
