@@ -11,7 +11,7 @@ običan korisnik (login se radi na BASE_URL/accounts/login):
 - password: nairobi1
 
 
-registracija (radi se na BASE_URL/register):
+registracija (izvršava se na BASE_URL/register):
 - unosi se username
 - password se unosi dvaput da ga potvrdimo
 
@@ -21,5 +21,5 @@ upravljanje korisnicima (izvršava se na BASE_URL/admin):
 
 
 admin stranica (izvršava se na admin-korisnik):
--oni koji nisu admin korisnici ispiše im se poruka da nemaju dozvolu za admin stranicu
+- oni koji nisu admin korisnici ispiše im se poruka da nemaju dozvolu za admin stranicu
 
