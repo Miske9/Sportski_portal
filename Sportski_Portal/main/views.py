@@ -168,11 +168,10 @@ class UtakmicaDetailView(DetailView):
 
         # Get the current match object
         utakmice = self.get_object()
-        context['natjecanje'] = Natjecanje.objects.filter(utakmice=utakmice)
-        
+        context['natjecanje'] = Natjecanje.objects.filter(utakmice=utakmice)        
+      
 
         return context
-
 
 class IgracListView(ListView):
     model = Igrac
