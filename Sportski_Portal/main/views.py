@@ -169,8 +169,8 @@ class UtakmicaDetailView(DetailView):
         utakmice = self.get_object()
         context['natjecanje'] = Natjecanje.objects.filter(utakmice=utakmice)        
       
-        return context
-    
+        return context  
+      
 class IgracListView(ListView):
     model = Igrac
     template_name = 'igrac_list.html'
