@@ -1,7 +1,6 @@
 {% extends 'base_generic.html' %}{% block content %}
 <h2>Filtriraj utakmice</h2>
 <form method="get" action="{% url 'main:utakmica-list' %}">
-  <!-- Filter za natjecanje -->
   <label for="natjecanje">Natjecanje:</label>
   <select name="natjecanje" id="natjecanje">
       <option value="">--- Odaberite natjecanje ---</option>
@@ -12,7 +11,6 @@
       {% endfor %}
   </select>
 
-  <!-- Filter za datum -->
   <label for="datum_od">Datum od:</label>
   <input type="date" name="datum_od" value="{{ request.GET.datum_od }}">
 
@@ -22,7 +20,6 @@
   <button type="submit">Filtriraj</button>
 </form>
 
-<!-- Prikaz utakmica -->
 <table>
   <thead>
       <tr>

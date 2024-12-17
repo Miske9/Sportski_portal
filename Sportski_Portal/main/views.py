@@ -1,10 +1,10 @@
-from django.shortcuts import get_object_or_404 # type: ignore
-from django.shortcuts import render, redirect # type: ignore
-from django.http import HttpResponse # type: ignore
-from django.contrib.auth.forms import UserCreationForm # type: ignore
-from django.contrib.auth import authenticate, login # type: ignore
-from django.contrib.auth.decorators import login_required# type: ignore
-from django.views.generic import ListView, DetailView # type: ignore
+from django.shortcuts import get_object_or_404  # type: ignore
+from django.shortcuts import render, redirect  # type: ignore
+from django.http import HttpResponse  # type: ignore
+from django.contrib.auth.forms import UserCreationForm  # type: ignore
+from django.contrib.auth import authenticate, login  # type: ignore
+from django.contrib.auth.decorators import login_required # type: ignore
+from django.views.generic import ListView, DetailView  # type: ignore
 from main.models import Natjecanje, Tim, Igrac, Utakmica
 
 def index(request):
@@ -74,7 +74,7 @@ class NatjecanjeDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Get timove i utakmice povezane s trenutnim natjecanjem
+        
         natjecanje = self.get_object()
         context['timovi'] = Tim.objects.filter(natjecanje=natjecanje)
         context['utakmice'] = Utakmica.objects.filter(natjecanje=natjecanje)
@@ -114,7 +114,7 @@ class TimDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Get timove i utakmice povezane s trenutnim natjecanjem
+        
         timovi = self.get_object()
         context['natjecanja'] = Natjecanje.objects.filter(timovi=timovi)
 
@@ -125,21 +125,21 @@ class UtakmicaListView(ListView):
     template_name = 'utakmica_list.html'
     context_object_name = 'utakmice'
     
-    # Filtriranje prema GET parametrima
+    
     def get_queryset(self):
         queryset = super().get_queryset()
 
-        # Filtriranje prema natjecanju
+        
         natjecanje_id = self.request.GET.get('natjecanje')
         if natjecanje_id:
             queryset = queryset.filter(natjecanje__id=natjecanje_id)
 
-        # Filtriranje prema timu
+        
         tim_id = self.request.GET.get('tim')
         if tim_id:
             queryset = queryset.filter(Q(tim1__id=tim_id) | Q(tim2__id=tim_id))
 
-        # Filtriranje prema datumu
+        
         datum_od = self.request.GET.get('datum_od')
         datum_do = self.request.GET.get('datum_do')
         if datum_od and datum_do:
@@ -150,8 +150,7 @@ class UtakmicaListView(ListView):
             queryset = queryset.filter(datum__lte=datum_do)
 
         return queryset
-
-    # Dodatni kontekst za filtere
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['natjecanja'] = Natjecanje.objects.all()
@@ -166,13 +165,12 @@ class UtakmicaDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Get the current match object
+        
         utakmice = self.get_object()
         context['natjecanje'] = Natjecanje.objects.filter(utakmice=utakmice)        
       
-
         return context
-
+    
 class IgracListView(ListView):
     model = Igrac
     template_name = 'igrac_list.html'
@@ -207,9 +205,7 @@ class IgracDetailView(DetailView):
     context_object_name = 'igraci'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        # Get timove i utakmice povezane s trenutnim natjecanjem
+        context = super().get_context_data(**kwargs)  
         igraci = self.get_object()
         context['timovi'] = Tim.objects.filter(igraci=igraci)
 
