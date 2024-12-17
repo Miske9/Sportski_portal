@@ -1,0 +1,10 @@
+{% extends 'base_generic.html' %} {% block content %}
+<hr />
+<p><b>Ime igrača: </b>{{ igraci.ime }}</p>
+<p><b>Prezime igrača: </b> {{ igraci.prezime }}</p>
+<p><b>Tim igrača: </b> {{ igraci.tim.naziv }}</p>
+<p><b>Broj na dresu: </b> {{ igraci.broj_dresa }}</p>
+<hr />
+
+<a href="{% url 'main:igrac-list' %}">Natrag na popis igrača</a>
+{% endblock %}

@@ -1,40 +1,51 @@
+{% extends 'base_generic.html' %}{% block content %}
 <h2>Filtriraj utakmice</h2>
-<form method="get">
-    <label for="natjecanje">Natjecanje:</label>
-    <select name="natjecanje" id="natjecanje">
-        <option value="">Odaberi natjecanje</option>
-        {% for natjecanje in natjecanja %}
-            <option value="{{ natjecanje.id }}" {% if request.GET.natjecanje == natjecanje.id %}selected{% endif %}>{{ natjecanje.naziv }}</option>
-        {% endfor %}
-    </select>
+<form method="get" action="{% url 'main:utakmica-list' %}">
+  <!-- Filter za natjecanje -->
+  <label for="natjecanje">Natjecanje:</label>
+  <select name="natjecanje" id="natjecanje">
+      <option value="">--- Odaberite natjecanje ---</option>
+      {% for natjecanje in natjecanja %}
+          <option value="{{ natjecanje.id }}" {% if request.GET.natjecanje == natjecanje.id|stringformat:"s" %}selected{% endif %}>
+              {{ natjecanje.naziv }}
+          </option>
+      {% endfor %}
+  </select>
 
-    <label for="datum">Datum:</label>
-    <input type="date" name="datum" id="datum" value="{{ request.GET.datum }}">
+  <!-- Filter za datum -->
+  <label for="datum_od">Datum od:</label>
+  <input type="date" name="datum_od" value="{{ request.GET.datum_od }}">
 
-    <label for="tim1">Tim 1:</label>
-    <select name="tim1" id="tim1">
-        <option value="">Odaberi tim</option>
-        {% for tim in timovi %}
-            <option value="{{ tim.id }}" {% if request.GET.tim1 == tim.id %}selected{% endif %}>{{ tim.naziv }}</option>
-        {% endfor %}
-    </select>
+  <label for="datum_do">Datum do:</label>
+  <input type="date" name="datum_do" value="{{ request.GET.datum_do }}">
 
-    <label for="tim2">Tim 2:</label>
-    <select name="tim2" id="tim2">
-        <option value="">Odaberi tim</option>
-        {% for tim in timovi %}
-            <option value="{{ tim.id }}" {% if request.GET.tim2 == tim.id %}selected{% endif %}>{{ tim.naziv }}</option>
-        {% endfor %}
-    </select>
-
-    <button type="submit">Filtriraj</button>
+  <button type="submit">Filtriraj</button>
 </form>
 
-<h2>Popis utakmica</h2>
-<ul>
-    {% for utakmica in utakmice %}
-        <li>{{ utakmica.tim1 }} vs {{ utakmica.tim2 }} - {{ utakmica.datum }}</li>
-    {% empty %}
-        <li>Nema rezultata.</li>
-    {% endfor %}
-</ul>
+<!-- Prikaz utakmica -->
+<table>
+  <thead>
+      <tr>
+          <th>Natjecanje</th>
+          <th>Tim 1</th>
+          <th>Tim 2</th>
+          <th>Rezultat</th>
+      </tr>
+  </thead>
+  <tbody>
+      {% for utakmica in utakmice %}
+      <tr>
+          <td>{{ utakmica.natjecanje.naziv }}</td>
+          <td>{{ utakmica.tim1.naziv }}</td>
+          <td>{{ utakmica.tim2.naziv }}</td>
+          <td>{{ utakmica.rezultat_tim1 }} - {{ utakmica.rezultat_tim2 }}</td>
+          <td>
+            <a href="{{ utakmica.get_absolute_url }}"
+              >{{ utakmica.tim1 }} vs {{utakmica.tim2}}</a
+            >
+          </td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base_generic.html' %} {% block content %}
+<hr />
+<p><b>Ime kluba: </b>{{ timovi.naziv }}</p>
+<p><b>Grad gdje se nalazi klub: </b> {{ timovi.grad }}</p>
+<p><b>Natjecanje: </b> {{ timovi.natjecanje.naziv }}</p>
+<hr />
+
+<a href="{% url 'main:tim-list' %}">Natrag na popis timova</a>
+{% endblock %}

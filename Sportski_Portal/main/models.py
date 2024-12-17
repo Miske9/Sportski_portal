@@ -1,4 +1,5 @@
 from django.db import models # type: ignore
+from django.urls import reverse # type: ignore
 
 class Natjecanje(models.Model):
     naziv = models.CharField(max_length=200)
@@ -12,6 +13,9 @@ class Natjecanje(models.Model):
         db_table = "natjecanje"
         verbose_name = "Natjecanje"
         verbose_name_plural = "Natjecanja"
+        
+    def get_absolute_url(self):
+        return reverse('main:natjecanje-detail', kwargs={'pk': self.pk})
 
 class Tim(models.Model):
     naziv = models.CharField(max_length=200)
@@ -25,6 +29,9 @@ class Tim(models.Model):
         db_table = "tim"
         verbose_name = "Tim"
         verbose_name_plural = "Timovi"
+    
+    def get_absolute_url(self):
+        return reverse('main:tim-detail', kwargs={'pk': self.pk})
 
 class Utakmica(models.Model):
     natjecanje = models.ForeignKey(Natjecanje, on_delete=models.CASCADE, related_name='utakmice')
@@ -41,6 +48,9 @@ class Utakmica(models.Model):
         db_table = "utakmica"
         verbose_name = "Utakmica"
         verbose_name_plural = "Utakmice"
+        
+    def get_absolute_url(self):
+        return reverse('main:utakmica-detail', kwargs={'pk': self.pk})
 
 class Igrac(models.Model):
     ime = models.CharField(max_length=100)
@@ -55,3 +65,6 @@ class Igrac(models.Model):
         db_table = "igrac"
         verbose_name = "Igrac"
         verbose_name_plural = "Igraci"
+        
+    def get_absolute_url(self):
+        return reverse('main:igrac-detail', kwargs={'pk': self.pk})

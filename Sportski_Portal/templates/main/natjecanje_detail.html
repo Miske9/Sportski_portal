@@ -4,29 +4,18 @@
 <p><b>Datum završetka:</b> {{ natjecanje.datum_zavrsetka }}</p>
 <hr />
 
-<h2>Utakmice</h2>
-{% if utakmice %}
+<h3>Utakmice u natjecanju</h3>
 <ul>
   {% for utakmica in utakmice %}
   <li>
-    <strong>{{ utakmica.datum|date:"d.m.Y. H:i" }}</strong>: {{
-    utakmica.tim1.naziv }} ({{ utakmica.rezultat_tim1 }}) - {{
-    utakmica.tim2.naziv }} ({{ utakmica.rezultat_tim2 }})
+    {{ utakmica.tim1 }} vs {{ utakmica.tim2 }} <br />
+    Datum: {{ utakmica.datum }} <br />
+    Rezultat: {{ utakmica.rezultat_tim1 }} - {{ utakmica.rezultat_tim2 }}
   </li>
+  {% empty %}
+  <li>Nema utakmica u ovom natjecanju.</li>
   {% endfor %}
 </ul>
-{% else %}
-<p>Nema odigranih utakmica za ovo natjecanje.</p>
-{% endif %}
 <hr />
-
-<h2>Timovi</h2>
-{% if timovi %}
-<ul>
-  {% for tim in timovi %}
-  <li>{{ tim.naziv }} ({{ tim.grad }})</li>
-  {% endfor %}
-</ul>
-{% else %}
-<p>Nema timova za ovo natjecanje.</p>
-{% endif %} {% endblock %}
+<a href="{% url 'main:natjecanje-list' %}">Natrag na popis natjecanja</a>
+{% endblock %}

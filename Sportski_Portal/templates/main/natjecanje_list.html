@@ -27,9 +27,10 @@
 <h2>Popis natjecanja</h2>
 <ul>
   {% for natjecanje in natjecanja %}
-  <li>{{ natjecanje.naziv }}</li>
-  {% empty %}
-  <li>Nema rezultata.</li>
+  <li>
+    <a href="{{ natjecanje.get_absolute_url }}">{{ natjecanje.naziv }}</a>
+  </li>
   {% endfor %}
 </ul>
+
 {% endblock %}

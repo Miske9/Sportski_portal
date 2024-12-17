@@ -1,3 +1,4 @@
+{% extends 'base_generic.html' %}{% block content %}
 <h2>Filtriraj timove</h2>
 <form method="get">
     <label for="naziv">Naziv:</label>
@@ -19,9 +20,12 @@
 
 <h2>Popis timova</h2>
 <ul>
-    {% for tim in timovi %}
-        <li>{{ tim.naziv }} ({{ tim.grad }})</li>
-    {% empty %}
-        <li>Nema rezultata.</li>
-    {% endfor %}
+  {% for tim in timovi %}
+  <li>
+    <a href="{{ tim.get_absolute_url }}">{{ tim.naziv }} ({{tim.grad}})</a>
+  </li>
+  {% empty %}
+  <li>Nema rezultata.</li>
+  {% endfor %}
 </ul>
+{% endblock %}

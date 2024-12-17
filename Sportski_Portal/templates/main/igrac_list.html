@@ -1,30 +1,36 @@
+{% extends 'base_generic.html' %}{% block content %}
 <h2>Filtriraj igrače</h2>
 <form method="get">
-    <label for="ime">Ime:</label>
-    <input type="text" name="ime" id="ime" value="{{ request.GET.ime }}">
+  <label for="ime">Ime:</label>
+  <input type="text" name="ime" id="ime" value="{{ request.GET.ime }}" />
 
-    <label for="prezime">Prezime:</label>
-    <input type="text" name="prezime" id="prezime" value="{{ request.GET.prezime }}">
+  <label for="prezime">Prezime:</label>
+  <input
+    type="text"
+    name="prezime"
+    id="prezime"
+    value="{{ request.GET.prezime }}"
+  />
 
-    <label for="tim">Tim:</label>
-    <select name="tim" id="tim">
-        <option value="">Odaberi tim</option>
-        {% for tim in timovi %}
-            <option value="{{ tim.id }}" {% if request.GET.tim == tim.id %}selected{% endif %}>{{ tim.naziv }}</option>
-        {% endfor %}
-    </select>
+  <label for="broj_dresa">Broj dresa:</label>
+  <input
+    type="number"
+    name="broj_dresa"
+    id="broj_dresa"
+    value="{{ request.GET.broj_dresa }}"
+  />
 
-    <label for="broj_dresa">Broj dresa:</label>
-    <input type="number" name="broj_dresa" id="broj_dresa" value="{{ request.GET.broj_dresa }}">
-
-    <button type="submit">Filtriraj</button>
+  <button type="submit">Filtriraj</button>
 </form>
 
 <h2>Popis igrača</h2>
 <ul>
-    {% for igrac in igraci %}
-        <li>{{ igrac.ime }} {{ igrac.prezime }} ({{ igrac.tim.naziv }})</li>
-    {% empty %}
-        <li>Nema rezultata.</li>
-    {% endfor %}
+  {% for igrac in igraci %}
+  <li>
+    <a href="{{ igrac.get_absolute_url }}">{{ igrac.ime }} {{igrac.prezime}}</a>
+  </li>
+  {% empty %}
+  <li>Nema rezultata.</li>
+  {% endfor %}
 </ul>
+{% endblock %}
