@@ -1,0 +1,27 @@
+<h2>Filtriraj timove</h2>
+<form method="get">
+    <label for="naziv">Naziv:</label>
+    <input type="text" name="naziv" id="naziv" value="{{ request.GET.naziv }}">
+
+    <label for="grad">Grad:</label>
+    <input type="text" name="grad" id="grad" value="{{ request.GET.grad }}">
+
+    <label for="natjecanje">Natjecanje:</label>
+    <select name="natjecanje" id="natjecanje">
+        <option value="">Odaberi natjecanje</option>
+        {% for natjecanje in natjecanja %}
+            <option value="{{ natjecanje.id }}" {% if request.GET.natjecanje == natjecanje.id %}selected{% endif %}>{{ natjecanje.naziv }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Filtriraj</button>
+</form>
+
+<h2>Popis timova</h2>
+<ul>
+    {% for tim in timovi %}
+        <li>{{ tim.naziv }} ({{ tim.grad }})</li>
+    {% empty %}
+        <li>Nema rezultata.</li>
+    {% endfor %}
+</ul>

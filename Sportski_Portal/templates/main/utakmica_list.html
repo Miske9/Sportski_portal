@@ -1,0 +1,40 @@
+<h2>Filtriraj utakmice</h2>
+<form method="get">
+    <label for="natjecanje">Natjecanje:</label>
+    <select name="natjecanje" id="natjecanje">
+        <option value="">Odaberi natjecanje</option>
+        {% for natjecanje in natjecanja %}
+            <option value="{{ natjecanje.id }}" {% if request.GET.natjecanje == natjecanje.id %}selected{% endif %}>{{ natjecanje.naziv }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="datum">Datum:</label>
+    <input type="date" name="datum" id="datum" value="{{ request.GET.datum }}">
+
+    <label for="tim1">Tim 1:</label>
+    <select name="tim1" id="tim1">
+        <option value="">Odaberi tim</option>
+        {% for tim in timovi %}
+            <option value="{{ tim.id }}" {% if request.GET.tim1 == tim.id %}selected{% endif %}>{{ tim.naziv }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="tim2">Tim 2:</label>
+    <select name="tim2" id="tim2">
+        <option value="">Odaberi tim</option>
+        {% for tim in timovi %}
+            <option value="{{ tim.id }}" {% if request.GET.tim2 == tim.id %}selected{% endif %}>{{ tim.naziv }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Filtriraj</button>
+</form>
+
+<h2>Popis utakmica</h2>
+<ul>
+    {% for utakmica in utakmice %}
+        <li>{{ utakmica.tim1 }} vs {{ utakmica.tim2 }} - {{ utakmica.datum }}</li>
+    {% empty %}
+        <li>Nema rezultata.</li>
+    {% endfor %}
+</ul>

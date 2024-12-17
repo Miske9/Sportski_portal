@@ -1,0 +1,32 @@
+{% extends 'base_generic.html' %} {% block content %}
+<h1>Detalji natjecanja: {{ natjecanje.naziv }}</h1>
+<p><b>Datum početka:</b> {{ natjecanje.datum_pocetka }}</p>
+<p><b>Datum završetka:</b> {{ natjecanje.datum_zavrsetka }}</p>
+<hr />
+
+<h2>Utakmice</h2>
+{% if utakmice %}
+<ul>
+  {% for utakmica in utakmice %}
+  <li>
+    <strong>{{ utakmica.datum|date:"d.m.Y. H:i" }}</strong>: {{
+    utakmica.tim1.naziv }} ({{ utakmica.rezultat_tim1 }}) - {{
+    utakmica.tim2.naziv }} ({{ utakmica.rezultat_tim2 }})
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Nema odigranih utakmica za ovo natjecanje.</p>
+{% endif %}
+<hr />
+
+<h2>Timovi</h2>
+{% if timovi %}
+<ul>
+  {% for tim in timovi %}
+  <li>{{ tim.naziv }} ({{ tim.grad }})</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Nema timova za ovo natjecanje.</p>
+{% endif %} {% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base_generic.html' %} {% block content %}
+<h2>Natjecanja</h2>
+
+<form method="get">
+  <label for="naziv">Naziv:</label>
+  <input type="text" name="naziv" id="naziv" value="{{ request.GET.naziv }}" />
+
+  <label for="datum_pocetka">Datum početka od:</label>
+  <input
+    type="date"
+    name="datum_pocetka"
+    id="datum_pocetka"
+    value="{{ request.GET.datum_pocetka }}"
+  />
+
+  <label for="datum_zavrsetka">Datum završetka do:</label>
+  <input
+    type="date"
+    name="datum_zavrsetka"
+    id="datum_zavrsetka"
+    value="{{ request.GET.datum_zavrsetka }}"
+  />
+
+  <button type="submit">Filtriraj</button>
+</form>
+
+<h2>Popis natjecanja</h2>
+<ul>
+  {% for natjecanje in natjecanja %}
+  <li>{{ natjecanje.naziv }}</li>
+  {% empty %}
+  <li>Nema rezultata.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
