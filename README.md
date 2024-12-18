@@ -23,6 +23,11 @@ admin stranica (izvršava se na BASE_URL/admin-korisnik):
 
 - oni koji nisu admin korisnici ispiše im se poruka da nemaju dozvolu za admin stranicu
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 880b0f370d80e03daf7fb5ed6f7c4b0408d03388
 #Zadatak2
 
 Superuser i običan korisnik ostaju isti, dodane su poveznice i ne treba se više putem URL-a pristupati stranicama, dovoljno je kliknuti na poveznice i otvara se odgovarajuća stranica, omogućena je registracija, prijava i odjava, ako korisnik nije prijavljen ne može pristupiti stranicama, automatski se odjavljuje korisnik kad se ugasi server, omogućeno je filtriranje i prikaz sa ListView te prikaz sa DetailView
