@@ -22,3 +22,7 @@ upravljanje korisnicima (izvršava se na BASE_URL/admin):
 admin stranica (izvršava se na BASE_URL/admin-korisnik):
 
 - oni koji nisu admin korisnici ispiše im se poruka da nemaju dozvolu za admin stranicu
+
+#Zadatak2
+
+Superuser i običan korisnik ostaju isti, dodane su poveznice i ne treba se više putem URL-a pristupati stranicama, dovoljno je kliknuti na poveznice i otvara se odgovarajuća stranica, omogućena je registracija, prijava i odjava, ako korisnik nije prijavljen ne može pristupiti stranicama, automatski se odjavljuje korisnik kad se ugasi server, omogućeno je filtriranje i prikaz sa ListView te prikaz sa DetailView
