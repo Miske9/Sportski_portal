@@ -102,10 +102,11 @@ class TimListView(LoginRequiredMixin,ListView):
             queryset = queryset.filter(natjecanje__id=natjecanje_id)
 
         return queryset
-
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['natjecanja'] = Natjecanje.objects.all()
+        context['gradovi'] = Tim.objects.values_list('grad', flat=True).distinct()
         return context
 
 class TimDetailView(LoginRequiredMixin,DetailView):

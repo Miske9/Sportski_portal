@@ -8,9 +8,9 @@
 <ul>
   {% for utakmica in utakmice %}
   <li>
-    {{ utakmica.tim1 }} vs {{ utakmica.tim2 }} <br />
-    Datum: {{ utakmica.datum }} <br />
-    Rezultat: {{ utakmica.rezultat_tim1 }} - {{ utakmica.rezultat_tim2 }}
+    <b>{{ utakmica.tim1 }} vs {{ utakmica.tim2 }} </b><br />
+    <b>Datum:</b> {{ utakmica.datum }} <br />
+    <b>Rezultat:</b> {{ utakmica.rezultat_tim1 }} - {{ utakmica.rezultat_tim2 }}
   </li>
   {% empty %}
   <li>Nema utakmica u ovom natjecanju.</li>

@@ -12,9 +12,9 @@ from main.factory import (
 )
 
 NUM_NATJECANJA = 4
-NUM_TIM = 10
-NUM_UTAKMICA = 50
-NUM_IGRACA = 60
+NUM_TIM = 8
+NUM_UTAKMICA = 32
+NUM_IGRACA = 40
 
 class Command(BaseCommand):
     help = "Generates test data"

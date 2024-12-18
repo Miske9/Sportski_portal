@@ -1,3 +1,5 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
 {% if form.errors %}
 <h3>Unos nije ispravan.</h3>
 {% endif %} {% if next %} {% if user.is_authenticated %}

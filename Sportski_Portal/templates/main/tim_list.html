@@ -5,7 +5,12 @@
     <input type="text" name="naziv" id="naziv" value="{{ request.GET.naziv }}">
 
     <label for="grad">Grad:</label>
-    <input type="text" name="grad" id="grad" value="{{ request.GET.grad }}">
+    <select name="grad" id="grad">
+        <option value="">Odaberi grad</option>
+        {% for grad in gradovi %}
+            <option value="{{ grad }}" {% if request.GET.grad == grad %}selected{% endif %}>{{ grad }}</option>
+        {% endfor %}
+    </select>
 
     <label for="natjecanje">Natjecanje:</label>
     <select name="natjecanje" id="natjecanje">
@@ -22,7 +27,7 @@
 <ul>
   {% for tim in timovi %}
   <li>
-    <a href="{{ tim.get_absolute_url }}">{{ tim.naziv }} ({{tim.grad}})</a>
+    <a href="{{ tim.get_absolute_url }}">{{ tim.naziv }}</a>
   </li>
   {% empty %}
   <li>Nema rezultata.</li>

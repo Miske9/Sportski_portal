@@ -1,0 +1,32 @@
+a {
+    color: blue; 
+    text-decoration: none; 
+}
+
+a:visited {
+    color: blue; 
+    text-decoration: none; 
+}
+
+a:hover {
+    color: darkcyan; 
+}
+
+a:active {
+    color: red; 
+}
+
+h1 {
+    color: black;
+    text-align: center;
+}
+
+h2 {
+    color: black;
+    text-align: left;
+}
+
+body {
+    background-color: #f5f5dc; 
+    font-family: Arial, sans-serif; 
+}
