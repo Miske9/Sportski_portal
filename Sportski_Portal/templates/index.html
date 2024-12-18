@@ -1,4 +1,3 @@
-{% extends "base_generic.html" %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,8 +9,30 @@
 
     {% if user.is_authenticated %}
     <p>Vaše ime: {{ user.username }}</p>
+    <p>
+      <li><a href="/admin-korisnik">ADMIN</a></li>
+    </p>
+    <hr />
+    <h1>Sportski Portal</h1>
+    <div id="sidebar">
+      {% block sidebar %}
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/utakmice">Utakmice</a></li>
+        <li><a href="/natjecanja">Natjecanja</a></li>
+        <li><a href="/timovi">Timovi</a></li>
+        <li><a href="/igraci">Igraci</a></li>
+      </ul>
+      <hr />
+      <p><a href="/logout">Odjavi se</a></p>
+      {% endblock %}
+    </div>
+
+    <div class="content">{% block content %} {% endblock %}</div>
     {% else %}
     <p>Niste prijavljeni.</p>
+    <li><a href="/register">Registriraj se</a></li>
+    <li><a href="/accounts/login">Prijavi se</a></li>
     {% endif %}
   </body>
 </html>

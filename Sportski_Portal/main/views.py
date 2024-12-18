@@ -1,14 +1,20 @@
 from django.shortcuts import get_object_or_404  # type: ignore
+from django.db.models import Q # type: ignore
+from django.contrib.auth.mixins import LoginRequiredMixin # type: ignore
 from django.shortcuts import render, redirect  # type: ignore
 from django.http import HttpResponse  # type: ignore
 from django.contrib.auth.forms import UserCreationForm  # type: ignore
-from django.contrib.auth import authenticate, login  # type: ignore
+from django.contrib.auth import authenticate, login, logout  # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
 from django.views.generic import ListView, DetailView  # type: ignore
 from main.models import Natjecanje, Tim, Igrac, Utakmica
 
 def index(request):
     return render(request, 'index.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
 
 def register(request):
     if request.method == 'POST':
@@ -22,12 +28,9 @@ def register(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('main:index')
-
     else:
         form = UserCreationForm()
-
     context = {'form': form}
-
     return render(request, 'registration/register.html', context)
 
 def is_staff_provjera(user):
@@ -39,7 +42,7 @@ def admin_korisnik(request):
         return HttpResponse("Nemate prava za ovu stranicu.")
     return render(request, "admin_korisnik.html")
 
-class NatjecanjeListView(ListView):
+class NatjecanjeListView(LoginRequiredMixin,ListView):
     model = Natjecanje
     template_name = 'natjecanje_list.html'  
     context_object_name = 'natjecanja'
@@ -66,14 +69,13 @@ class NatjecanjeListView(ListView):
         context['utakmice'] = Utakmica.objects.all()
         return context
 
-class NatjecanjeDetailView(DetailView):
+class NatjecanjeDetailView(LoginRequiredMixin,DetailView):
     model = Natjecanje
     template_name = 'main/natjecanje_detail.html'
     context_object_name = 'natjecanje'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         
         natjecanje = self.get_object()
         context['timovi'] = Tim.objects.filter(natjecanje=natjecanje)
@@ -81,7 +83,7 @@ class NatjecanjeDetailView(DetailView):
 
         return context
 
-class TimListView(ListView):
+class TimListView(LoginRequiredMixin,ListView):
     model = Tim
     template_name = 'tim_list.html'
     context_object_name = 'timovi'
@@ -106,39 +108,34 @@ class TimListView(ListView):
         context['natjecanja'] = Natjecanje.objects.all()
         return context
 
-class TimDetailView(DetailView):
+class TimDetailView(LoginRequiredMixin,DetailView):
     model = Tim
     template_name = 'main/tim_detail.html'
     context_object_name = 'timovi'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         
         timovi = self.get_object()
         context['natjecanja'] = Natjecanje.objects.filter(timovi=timovi)
 
         return context
 
-class UtakmicaListView(ListView):
+class UtakmicaListView(LoginRequiredMixin,ListView):
     model = Utakmica
     template_name = 'utakmica_list.html'
     context_object_name = 'utakmice'
     
-    
     def get_queryset(self):
         queryset = super().get_queryset()
-
         
         natjecanje_id = self.request.GET.get('natjecanje')
         if natjecanje_id:
             queryset = queryset.filter(natjecanje__id=natjecanje_id)
-
         
         tim_id = self.request.GET.get('tim')
         if tim_id:
             queryset = queryset.filter(Q(tim1__id=tim_id) | Q(tim2__id=tim_id))
-
         
         datum_od = self.request.GET.get('datum_od')
         datum_do = self.request.GET.get('datum_do')
@@ -157,7 +154,7 @@ class UtakmicaListView(ListView):
         context['timovi'] = Tim.objects.all()
         return context
 
-class UtakmicaDetailView(DetailView):
+class UtakmicaDetailView(LoginRequiredMixin,DetailView):
     model = Utakmica
     template_name = 'main/utakmica_detail.html'
     context_object_name = 'utakmice'
@@ -171,7 +168,7 @@ class UtakmicaDetailView(DetailView):
       
         return context  
       
-class IgracListView(ListView):
+class IgracListView(LoginRequiredMixin,ListView):
     model = Igrac
     template_name = 'igrac_list.html'
     context_object_name = 'igraci'
@@ -199,7 +196,7 @@ class IgracListView(ListView):
         context['timovi'] = Tim.objects.all()
         return context
 
-class IgracDetailView(DetailView):
+class IgracDetailView(LoginRequiredMixin,DetailView):
     model = Igrac
     template_name = 'main/igrac_detail.html'
     context_object_name = 'igraci'

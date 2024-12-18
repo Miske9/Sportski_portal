@@ -6,6 +6,7 @@ app_name='main'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path("logout/", views.logout_view, name='logout'),
     path("register/",views.register, name="register"),
     path("admin-korisnik/", views.admin_korisnik, name="admin_korisnik"),
     path('timovi/', TimListView.as_view(), name='tim-list'),
