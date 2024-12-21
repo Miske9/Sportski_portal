@@ -18,5 +18,7 @@
 </ul>
 <hr />
 <a href="{% url 'main:natjecanje-list' %}">Natrag na popis natjecanja</a>
+<a href="{% url 'main:natjecanje-delete' natjecanje.pk %}">Obriši</a>
+<a href="{% url 'main:natjecanje-update' natjecanje.pk %}">Uredi</a>
 <p><a href="/logout">Odjavi se</a></p>
 {% endblock %}

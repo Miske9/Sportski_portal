@@ -38,12 +38,13 @@
           <td>{{ utakmica.rezultat_tim1 }} - {{ utakmica.rezultat_tim2 }}</td>
           <td>
             <a href="{{ utakmica.get_absolute_url }}"
-              >{{ utakmica.tim1 }} vs {{utakmica.tim2}}</a
+              >Detalji utakmice</a
             >
           </td>
       </tr>
       {% endfor %}
   </tbody>
 </table>
+<a href="{% url 'main:utakmica-create' %}">Dodaj</a>
 <p><a href="/logout">Odjavi se</a></p>
 {% endblock %}

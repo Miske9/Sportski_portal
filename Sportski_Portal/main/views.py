@@ -1,5 +1,9 @@
 from django.shortcuts import get_object_or_404  # type: ignore
 from django.db.models import Q # type: ignore
+from django.views.generic.edit import CreateView, UpdateView, DeleteView # type: ignore
+from django.urls import reverse_lazy # type: ignore
+from django.urls import reverse # type: ignore
+from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin # type: ignore
 from django.shortcuts import render, redirect  # type: ignore
 from django.http import HttpResponse  # type: ignore
@@ -83,6 +87,25 @@ class NatjecanjeDetailView(LoginRequiredMixin,DetailView):
 
         return context
 
+class NatjecanjeCreateView(LoginRequiredMixin, CreateView):
+    model = Natjecanje
+    fields = ['naziv', 'datum_pocetka', 'datum_zavrsetka']
+    template_name = 'main/forms/natjecanje_form.html'
+    success_url = reverse_lazy('main:natjecanje-list')
+    
+class NatjecanjeUpdateView(LoginRequiredMixin, UpdateView):
+    model = Natjecanje
+    fields = ['naziv', 'datum_pocetka', 'datum_zavrsetka']
+    template_name = 'main/forms/natjecanje_form.html'
+    def get_success_url(self):
+        return reverse('main:natjecanje-detail', args=[self.object.pk])
+
+class NatjecanjeDeleteView(LoginRequiredMixin, DeleteView):
+    model = Natjecanje
+    template_name = 'main/forms/natjecanje_confirm_delete.html'
+    success_url = reverse_lazy('main:natjecanje-list')
+
+    
 class TimListView(LoginRequiredMixin,ListView):
     model = Tim
     template_name = 'tim_list.html'
@@ -121,6 +144,24 @@ class TimDetailView(LoginRequiredMixin,DetailView):
         context['natjecanja'] = Natjecanje.objects.filter(timovi=timovi)
 
         return context
+    
+class TimCreateView(LoginRequiredMixin, CreateView):
+    model = Tim
+    fields = ['naziv', 'grad', 'natjecanje']
+    template_name = 'main/forms/tim_form.html'
+    success_url = reverse_lazy('main:tim-list')
+
+class TimUpdateView(LoginRequiredMixin, UpdateView):
+    model = Tim
+    fields = ['naziv', 'grad', 'natjecanje']
+    template_name = 'main/forms/tim_form.html'
+    def get_success_url(self):
+        return reverse('main:tim-detail', args=[self.object.pk])
+
+class TimDeleteView(LoginRequiredMixin, DeleteView):
+    model = Tim
+    template_name = 'main/forms/tim_confirm_delete.html'
+    success_url = reverse_lazy('main:tim-list')
 
 class UtakmicaListView(LoginRequiredMixin,ListView):
     model = Utakmica
@@ -168,6 +209,24 @@ class UtakmicaDetailView(LoginRequiredMixin,DetailView):
         context['natjecanje'] = Natjecanje.objects.filter(utakmice=utakmice)        
       
         return context  
+    
+class UtakmicaCreateView(LoginRequiredMixin, CreateView):
+    model = Utakmica
+    fields = ['natjecanje', 'datum', 'tim1', 'tim2', 'rezultat_tim1', 'rezultat_tim2']
+    template_name = 'main/forms/utakmica_form.html'
+    success_url = reverse_lazy('main:utakmica-list')
+
+class UtakmicaUpdateView(LoginRequiredMixin, UpdateView):
+    model = Utakmica
+    fields = ['natjecanje', 'datum', 'tim1', 'tim2', 'rezultat_tim1', 'rezultat_tim2']
+    template_name = 'main/forms/utakmica_form.html'
+    def get_success_url(self):
+        return reverse('main:utakmica-detail', args=[self.object.pk])
+
+class UtakmicaDeleteView(LoginRequiredMixin, DeleteView):
+    model = Utakmica
+    template_name = 'main/forms/utakmica_confirm_delete.html'
+    success_url = reverse_lazy('main:utakmica-list')
       
 class IgracListView(LoginRequiredMixin,ListView):
     model = Igrac
@@ -209,6 +268,23 @@ class IgracDetailView(LoginRequiredMixin,DetailView):
 
         return context
  
+class IgracCreateView(LoginRequiredMixin, CreateView):
+    model = Igrac
+    fields = ['ime', 'prezime', 'tim', 'broj_dresa']
+    template_name = 'main/forms/igrac_form.html'
+    success_url = reverse_lazy('main:igrac-list')
+
+class IgracUpdateView(LoginRequiredMixin, UpdateView):
+    model = Igrac
+    fields = ['ime', 'prezime', 'tim', 'broj_dresa']
+    template_name = 'main/forms/igrac_form.html'
+    def get_success_url(self):
+        return reverse('main:igrac-detail', args=[self.object.pk])
+
+class IgracDeleteView(LoginRequiredMixin, DeleteView):
+    model = Igrac
+    template_name = 'main/forms/igrac_confirm_delete.html'
+    success_url = reverse_lazy('main:igrac-list')
 
 
 

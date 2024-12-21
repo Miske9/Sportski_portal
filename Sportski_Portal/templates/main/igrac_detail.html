@@ -4,7 +4,8 @@
 <p><b>Tim igrača: </b> {{ igraci.tim.naziv }}</p>
 <p><b>Broj na dresu: </b> {{ igraci.broj_dresa }}</p>
 <hr />
-
 <a href="{% url 'main:igrac-list' %}">Natrag na popis igrača</a>
+<a href="{% url 'main:igrac-delete' igraci.pk %}">Obriši</a>
+<a href="{% url 'main:igrac-update' igraci.pk %}">Uredi</a>
 <p><a href="/logout">Odjavi se</a></p>
 {% endblock %}

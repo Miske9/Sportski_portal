@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %} {% block content %}
+<h2>
+  {% if object %}Ažuriraj natjecanje{% else %}Dodaj novo natjecanje{% endif %}
+</h2>
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Spremi</button>
+  <a href="{% url 'main:natjecanje-list' %}" class="btn btn-secondary">Nazad</a>
+</form>
+{% endblock %}
