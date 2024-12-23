@@ -17,8 +17,22 @@
   {% endfor %}
 </ul>
 <hr />
-<a href="{% url 'main:natjecanje-list' %}">Natrag na popis natjecanja</a>
-<a href="{% url 'main:natjecanje-delete' natjecanje.pk %}">Obriši</a>
-<a href="{% url 'main:natjecanje-update' natjecanje.pk %}">Uredi</a>
-<p><a href="/logout">Odjavi se</a></p>
+<div>
+  <a href="{% url 'main:natjecanje-list' %}">
+    <button type="button" class="btn btn-primary">
+      Natrag na popis natjecanja
+    </button>
+  </a>
+  <a href="{% url 'main:natjecanje-delete' natjecanje.pk %}">
+    <button type="button" class="btn btn-danger">Obriši</button>
+  </a>
+  <a href="{% url 'main:natjecanje-update' natjecanje.pk %}">
+    <button type="button" class="btn btn-warning">Uredi</button>
+  </a>
+</div>
+<p>
+  <a href="/logout"
+    ><button type="button" class="btn btn-primary">Odjavi se</button></a
+  >
+</p>
 {% endblock %}

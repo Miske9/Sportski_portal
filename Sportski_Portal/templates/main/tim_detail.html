@@ -3,8 +3,22 @@
 <p><b>Grad gdje se nalazi klub: </b> {{ timovi.grad }}</p>
 <p><b>Natjecanje: </b> {{ timovi.natjecanje.naziv }}</p>
 <hr />
-<a href="{% url 'main:tim-list' %}">Natrag na popis timova</a>
-<a href="{% url 'main:tim-delete' timovi.pk %}">Obriši</a>
-<a href="{% url 'main:tim-update' timovi.pk %}">Uredi</a>
-<p><a href="/logout">Odjavi se</a></p>
+<div>
+  <a href="{% url 'main:tim-list' %}">
+    <button type="button" class="btn btn-primary">
+      Natrag na popis timova
+    </button>
+  </a>
+  <a href="{% url 'main:tim-delete' timovi.pk %}">
+    <button type="button" class="btn btn-danger">Obriši</button>
+  </a>
+  <a href="{% url 'main:tim-update' timovi.pk %}">
+    <button type="button" class="btn btn-warning">Uredi</button>
+  </a>
+</div>
+<p>
+  <a href="/logout"
+    ><button type="button" class="btn btn-primary">Odjavi se</button></a
+  >
+</p>
 {% endblock %}

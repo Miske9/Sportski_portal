@@ -33,6 +33,17 @@
   <li>Nema rezultata.</li>
   {% endfor %}
 </ul>
-<a href="{% url 'main:igrac-create' %}">Dodaj</a>
-<p><a href="/logout">Odjavi se</a></p>
+<p>
+  <a href="{% url 'main:igrac-create' %}">
+    <button type="button">Dodaj igrača</button>
+  </a>
+</p>
+<div style="display: flex; gap: 10px; align-items: center">
+  <a href="/">
+    <button type="button">Natrag na početnu stranicu</button>
+  </a>
+  <a href="/logout">
+    <button type="button">Odjavi se</button>
+  </a>
+</div>
 {% endblock %}

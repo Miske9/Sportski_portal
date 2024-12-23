@@ -2,8 +2,10 @@
 <h2>Potvrdi brisanje igrača</h2>
 <p>Jeste li sigurni da želite obrisati igrača "{{ object }}"?</p>
 <form method="post">
-  {% csrf_token %}
+  {% csrf_token %}{{ form.as_p }}
   <button type="submit" class="btn btn-danger">Obriši</button>
-  <a href="{% url 'main:igrac-list' %}" class="btn btn-secondary">Nazad</a>
+  <a href="{% url 'main:igrac-detail' object.id %}" class="btn btn-secondary"
+    >Nazad</a
+  >
 </form>
 {% endblock %}

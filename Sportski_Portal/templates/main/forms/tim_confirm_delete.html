@@ -4,6 +4,8 @@
 <form method="post">
   {% csrf_token %}
   <button type="submit" class="btn btn-danger">Obriši</button>
-  <a href="{% url 'main:tim-list' %}" class="btn btn-secondary">Nazad</a>
+  <a href="{% url 'main:tim-detail' object.id %}" class="btn btn-secondary"
+    >Nazad</a
+  >
 </form>
 {% endblock %}
