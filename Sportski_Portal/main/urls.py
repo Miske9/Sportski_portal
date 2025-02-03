@@ -1,11 +1,21 @@
-from django.urls import path # type: ignore
+from django.urls import path, include # type: ignore
 from . import views
 from main.views import *
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views_api import NatjecanjeViewSet, TimViewSet, UtakmicaViewSet, IgracViewSet
 
 app_name='main'
 
+router = DefaultRouter()
+router.register(r'natjecanja', NatjecanjeViewSet)
+router.register(r'timovi', TimViewSet)
+router.register(r'utakmice', UtakmicaViewSet)
+router.register(r'igraci', IgracViewSet)
+
 urlpatterns = [
     path('', views.index, name='index'),
+    path('api/', include(router.urls)),
     path("logout/", views.logout_view, name='logout'),
     path("register/",views.register, name="register"),
     path("admin-korisnik/", views.admin_korisnik, name="admin_korisnik"),
