@@ -1,49 +1,69 @@
-{% extends 'base_generic.html' %}{% block content %}
+{% extends 'base_generic.html' %} {% block content %}
 <h2>Filtriraj igrače</h2>
-<form method="get">
-  <label for="ime">Ime:</label>
-  <input type="text" name="ime" id="ime" value="{{ request.GET.ime }}" />
+<form method="get" action="{% url 'main:igrac-list' %}" class="filter-form">
+  <div class="filter-container">
+    <label for="ime">Ime:</label>
+    <input type="text" name="ime" id="ime" value="{{ request.GET.ime }}" />
 
-  <label for="prezime">Prezime:</label>
-  <input
-    type="text"
-    name="prezime"
-    id="prezime"
-    value="{{ request.GET.prezime }}"
-  />
+    <label for="prezime">Prezime:</label>
+    <input
+      type="text"
+      name="prezime"
+      id="prezime"
+      value="{{ request.GET.prezime }}"
+    />
 
-  <label for="broj_dresa">Broj dresa:</label>
-  <input
-    type="number"
-    name="broj_dresa"
-    id="broj_dresa"
-    value="{{ request.GET.broj_dresa }}"
-  />
+    <label for="broj_dresa">Broj dresa:</label>
+    <input
+      type="number"
+      name="broj_dresa"
+      id="broj_dresa"
+      value="{{ request.GET.broj_dresa }}"
+    />
 
-  <button type="submit">Filtriraj</button>
+    <button type="submit">Filtriraj</button>
+  </div>
 </form>
 
 <h2>Popis igrača</h2>
-<ul>
-  {% for igrac in igraci %}
-  <li>
-    <a href="{{ igrac.get_absolute_url }}">{{ igrac.ime }} {{igrac.prezime}}</a>
-  </li>
-  {% empty %}
-  <li>Nema rezultata.</li>
-  {% endfor %}
-</ul>
-<p>
+<table>
+  <thead>
+    <tr>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>Tim</th>
+      <th>Broj dresa</th>
+      <th>Detalji</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for igrac in igraci %}
+    <tr>
+      <td>{{ igrac.ime }}</td>
+      <td>{{ igrac.prezime }}</td>
+      <td>{{ igrac.tim.naziv }}</td>
+      <td>{{ igrac.broj_dresa }}</td>
+      <td>
+        <a href="{{ igrac.get_absolute_url }}"
+          ><button type="button">Detalji o igraču</button></a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p class="gumbi">
   <a href="{% url 'main:igrac-create' %}">
     <button type="button">Dodaj igrača</button>
   </a>
-</p>
-<div style="display: flex; gap: 10px; align-items: center">
   <a href="/">
     <button type="button">Natrag na početnu stranicu</button>
   </a>
   <a href="/logout">
     <button type="button">Odjavi se</button>
   </a>
-</div>
+</p>
+</br>
+</br>
 {% endblock %}

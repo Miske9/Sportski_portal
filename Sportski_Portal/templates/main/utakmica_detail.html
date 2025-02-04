@@ -1,11 +1,11 @@
 {% extends 'base_generic.html' %} {% block content %}
-<p>
+<h2>
   <b>Utakmica: </b>{{ utakmice.tim1 }} vs {{utakmice.tim2}}
   ({{utakmice.rezultat_tim1}} - {{utakmice.rezultat_tim2}})
-</p>
+</h2>
 <p><b> Datum: </b> {{utakmice.datum}}</p>
 <hr />
-<div>
+<div class="gumbi">
   <a href="{% url 'main:utakmica-list' %}">
     <button type="button" class="btn btn-primary">
       Natrag na popis utakmica

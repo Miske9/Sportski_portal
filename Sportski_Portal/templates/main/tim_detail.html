@@ -1,9 +1,10 @@
 {% extends 'base_generic.html' %} {% block content %}
-<p><b>Ime kluba: </b>{{ timovi.naziv }}</p>
-<p><b>Grad gdje se nalazi klub: </b> {{ timovi.grad }}</p>
-<p><b>Natjecanje: </b> {{ timovi.natjecanje.naziv }}</p>
+<h2>Detalji o timu</h2>
+<p class="tim"><b>Ime kluba: </b>{{ timovi.naziv }}</p>
+<p class="tim"><b>Grad gdje se nalazi klub: </b> {{ timovi.grad }}</p>
+<p class="tim"><b>Natjecanje: </b> {{ timovi.natjecanje.naziv }}</p>
 <hr />
-<div>
+<div class="gumbi">
   <a href="{% url 'main:tim-list' %}">
     <button type="button" class="btn btn-primary">
       Natrag na popis timova

@@ -1,32 +1,301 @@
-a {
-    color: blue; 
-    text-decoration: none; 
-}
-
-a:visited {
-    color: blue; 
-    text-decoration: none; 
-}
-
-a:hover {
-    color: darkcyan; 
-}
-
-a:active {
-    color: red; 
-}
-
 h1 {
     color: black;
     text-align: center;
+    margin-top: 100px;
 }
 
 h2 {
     color: black;
-    text-align: left;
+    text-align: center;
+    margin-top: 100px;
 }
 
 body {
-    background-color: #f5f5dc; 
-    font-family: Arial, sans-serif; 
+    background-color:lightgreen;
+    font-family: Arial, sans-serif;
+    margin: 0;
 }
+
+.background-section {
+    background-image: url("/static/pozadine.jpg");
+    background-size: cover; /* Slika će prekriti cijelu pozadinu */
+    background-position: center; /* Centriranje slike */
+    background-attachment: fixed; /* Slika ostaje na mjestu kada se stranica pomiče */
+    height: 100vh; /* Podesite visinu tako da pozadinska slika prekriva cijeli ekran */
+    padding: 20px;
+    color: white; /* Tekst unutar pozadine bit će bijeli kako bi bio vidljiv */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .auth-info {
+    position: absolute; /* Pozicioniraj element u odnosu na parent */
+    top: 20px; /* Gornji razmak */
+    right: 20px; /* Desni razmak */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: right; /* Poravnanje teksta udesno */
+    color: white; /* Bijela boja za tekst */
+  }
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+.login-container h3 {
+    color: red;
+}
+
+/* Osnovni stilovi za tablicu */
+table {
+    width: 50%;
+    border: 2px solid antiquewhite;
+    border-collapse: collapse;
+    margin-top: 20px; /* Razmak od filtera */
+    margin:auto;
+    background-color: antiquewhite;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid white;
+    font-weight: bold;
+  }
+  
+  thead {
+    background-color: #f2f2f2;
+  }
+  
+  tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .filter-form {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+    white-space: nowrap; 
+    flex-wrap: nowrap; 
+  }
+  
+  .filter-form label,
+  .filter-form select,
+  .filter-form input,
+  .filter-form button {
+    font-size: 20px;
+    margin-bottom: 10px; /* Dodan razmak između elemenata ako pređu u novi red */
+  }
+  
+  /* Stilovi za gumbove ispod tablice */
+  .buttons-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  /* Stil za filter inpute */
+  label, select, input {
+    font-size: 14px;
+  }
+  
+  /* Gumbi za povratak na početnu stranicu i odjavu */
+  div a button {
+    background-color: black;
+  }
+  
+  div a button:hover {
+    background-color: #e0a800;
+  }
+  
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: #0056b3;
+}
+
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.register-container {
+    background: white;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 550px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Razmak između elemenata */
+    align-items: center; /* Centriranje gumba */
+}
+
+label {
+    font-weight: bold; 
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+input[type="submit"] {
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color:blue;
+}
+
+p {
+    color: black;
+    font-size: 14px;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Stiliziranje navigacijske trake */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    position: fixed; /* fiksiranje trake na vrhu */
+    top: 0;
+    left: 0;
+    width: 100%; /* traka će širiti preko cijele širine stranice */
+    z-index: 1000; /* osigurava da traka bude iznad drugih elemenata */
+    display: flex; /* koristi flexbox za ravnomjerno raspoređivanje */
+    justify-content: space-around; /* raspoređuje linkove ravnomjerno, bez preklapanja */
+    align-items: center; /* poravnava stavke vertikalno u sredinu */
+    padding: 10px 0; /* dodaje malo prostora unutar trake, povećajte visinu po potrebi */
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* koristi flexbox za stavke unutar liste */
+    width: 100%; /* osigurava da lista pokriva cijeli prostor trake */
+    justify-content: space-evenly; /* ravnomjerno raspoređuje linkove */
+  }
+  
+  .navbar li {
+    display: inline-block; /* stavke će biti raspoređene horizontalno */
+  }
+  
+  .navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    width: 100%; /* linkovi zauzimaju cijeli prostor unutar liste */
+  }
+  
+  .navbar li a:hover {
+    background-color: #111;
+  }
+
+  /* Stiliziranje okvira za gumbe */
+.auth-buttons {
+    display: flex;
+    flex-direction: column; /* Raspoređuje gumbe jedan ispod drugog */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px; /* visina okvira, možete prilagoditi */
+    border: 2px solid #333; /* okvir */
+    padding: 20px;
+    box-sizing: border-box; /* osigurava da padding ne povećava širinu okvira */
+    margin-top: 20px; /* razmak od prethodnog sadržaja */
+  }
+
+  .auth-button {
+    display: block;
+    background-color: white;
+    color: black;
+    padding: 14px 20px;
+    margin: 10px 0; /* razmak između gumba */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px; /* zaokruženi kutovi */
+    width: 200px; /* širina gumba */
+  }
+
+  .auth-button:hover {
+    background-color: black;
+    color: white;  }
+   
+  .gumbi{
+    text-align: center;
+  }
+  .gumb_natj{
+    text-align: left;
+  }
+  .natj_det{
+    text-align: center;
+  }
+  h3{
+    text-align: center;
+  }
+  .tim{
+    text-align: center;
+    font-size: 18px;
+  }

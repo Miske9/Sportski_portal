@@ -2,22 +2,35 @@
 <h1>Detalji natjecanja: {{ natjecanje.naziv }}</h1>
 <p><b>Datum početka:</b> {{ natjecanje.datum_pocetka }}</p>
 <p><b>Datum završetka:</b> {{ natjecanje.datum_zavrsetka }}</p>
-<hr />
 
 <h3>Utakmice u natjecanju</h3>
-<ul>
-  {% for utakmica in utakmice %}
-  <li>
-    <b>{{ utakmica.tim1 }} vs {{ utakmica.tim2 }} </b><br />
-    <b>Datum:</b> {{ utakmica.datum }} <br />
-    <b>Rezultat:</b> {{ utakmica.rezultat_tim1 }} - {{ utakmica.rezultat_tim2 }}
-  </li>
-  {% empty %}
-  <li>Nema utakmica u ovom natjecanju.</li>
-  {% endfor %}
-</ul>
-<hr />
-<div>
+
+{% if utakmice %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Tim 1</th>
+      <th>Tim 2</th>
+      <th>Datum</th>
+      <th>Rezultat</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for utakmica in utakmice %}
+    <tr>
+      <td>{{ utakmica.tim1 }}</td>
+      <td>{{ utakmica.tim2 }}</td>
+      <td>{{ utakmica.datum }}</td>
+      <td>{{ utakmica.rezultat_tim1 }} - {{ utakmica.rezultat_tim2 }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>Nema utakmica u ovom natjecanju.</p>
+{% endif %}
+
+<div class="gumbi">
   <a href="{% url 'main:natjecanje-list' %}">
     <button type="button" class="btn btn-primary">
       Natrag na popis natjecanja
@@ -30,9 +43,11 @@
     <button type="button" class="btn btn-warning">Uredi</button>
   </a>
 </div>
+
 <p>
-  <a href="/logout"
-    ><button type="button" class="btn btn-primary">Odjavi se</button></a
-  >
+  <a href="/logout">
+    <button type="button" class="btn btn-primary">Odjavi se</button>
+  </a>
 </p>
+
 {% endblock %}

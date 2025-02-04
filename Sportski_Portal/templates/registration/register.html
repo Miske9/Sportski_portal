@@ -1,9 +1,18 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
-<form method="post" action="{% url 'main:register' %}">
-  {% csrf_token %} {% if form.errors %}
-  <p>Greška.</p>
-  {% endif %} {{ form }}
-
-  <input type="submit" value="Register" />
-</form>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+  </head>
+  <body class="{% block body_class %}default-page{% endblock %}">
+    <div class="register-page">
+      <div class="register-container">
+        <form method="post" action="{% url 'main:register' %}">
+          {% csrf_token %} {% if form.errors %}
+          <p style="color: red">Greška.</p>
+          {% endif %} {{ form }}
+          <input type="submit" value="Register" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

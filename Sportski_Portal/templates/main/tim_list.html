@@ -1,6 +1,8 @@
-{% extends 'base_generic.html' %}{% block content %}
+{% extends 'base_generic.html' %}
+{% block content %}
 <h2>Filtriraj timove</h2>
-<form method="get">
+<form method="get" action="{% url 'main:tim-list' %}" class="filter-form">
+  <div class="filter-container">
     <label for="naziv">Naziv:</label>
     <input type="text" name="naziv" id="naziv" value="{{ request.GET.naziv }}">
 
@@ -21,29 +23,40 @@
     </select>
 
     <button type="submit">Filtriraj</button>
+  </div>
 </form>
 
 <h2>Popis timova</h2>
-<ul>
-  {% for tim in timovi %}
-  <li>
-    <a href="{{ tim.get_absolute_url }}">{{ tim.naziv }}</a>
-  </li>
-  {% empty %}
-  <li>Nema rezultata.</li>
-  {% endfor %}
-</ul>
-<p>
+<table>
+  <thead>
+    <tr>
+      <th>Naziv</th>
+      <th>Grad</th>
+      <th>Natjecanje</th>
+      <th>Detalji</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for tim in timovi %}
+    <tr>
+      <td>{{ tim.naziv }}</td>
+      <td>{{ tim.grad }}</td>
+      <td>{{ tim.natjecanje.naziv }}</td>
+      <td><a href="{{ tim.get_absolute_url }}"><button type="button">Detalji</button></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p class = "gumbi">
     <a href="{% url 'main:tim-create' %}">
         <button type="button">Dodaj tim</button>
-      </a>
-</p>
-<div style="display: flex; gap: 10px; align-items: center">
+    </a>
     <a href="/">
       <button type="button">Natrag na početnu stranicu</button>
     </a>
     <a href="/logout">
         <button type="button">Odjavi se</button>
-      </a>
-  </div>
+    </a>
+</p>
 {% endblock %}

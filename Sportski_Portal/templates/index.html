@@ -7,17 +7,7 @@
     <title>Početna</title>
   </head>
   <body>
-    <h1>Početna stranica Sportskog Portala</h1>
-
-    {% if user.is_authenticated %}
-    <p>Vaše ime: {{ user.username }}</p>
-    <p>
-      <li><a href="/admin-korisnik">ADMIN</a></li>
-    </p>
-    <hr />
-    <h1>Sportski Portal</h1>
-    <div id="sidebar">
-      {% block sidebar %}
+    <nav class="navbar">
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/utakmice">Utakmice</a></li>
@@ -25,16 +15,28 @@
         <li><a href="/timovi">Timovi</a></li>
         <li><a href="/igraci">Igraci</a></li>
       </ul>
-      <hr />
-      <p><a href="/logout">Odjavi se</a></p>
-      {% endblock %}
-    </div>
+    </nav>
 
-    <div class="content">{% block content %} {% endblock %}</div>
-    {% else %}
-    <p>Niste prijavljeni.</p>
-    <li><a href="/register">Registriraj se</a></li>
-    <li><a href="/accounts/login">Prijavi se</a></li>
-    {% endif %}
+    <h1>Početna stranica Sportskog Portala</h1>
+  </br>
+    
+    {% if user.is_authenticated %}
+    <div class="background-section">
+      <div class="auth-info">
+        <p>Vaše ime: {{ user.username }}</p>
+        <p><a href="/admin-korisnik" class="auth-button">ADMIN</a></p>
+        <p><a href="/logout" class="auth-button">Odjavi se</a></p>
+      </div>
+
+      <div class="content">{% block content %} {% endblock %}</div>
+
+      {% else %}
+      <p>Niste prijavljeni.</p>
+      <div class="auth-buttons">
+        <a href="/register" class="auth-button">Registriraj se</a>
+        <a href="/accounts/login" class="auth-button">Prijavi se</a>
+      </div>
+      {% endif %}
+    </div>
   </body>
 </html>

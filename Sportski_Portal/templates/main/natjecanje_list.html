@@ -1,49 +1,75 @@
 {% extends 'base_generic.html' %} {% block content %}
 <h2>Natjecanja</h2>
 
-<form method="get">
-  <label for="naziv">Naziv:</label>
-  <input type="text" name="naziv" id="naziv" value="{{ request.GET.naziv }}" />
+<form
+  method="get"
+  action="{% url 'main:natjecanje-list' %}"
+  class="filter-form"
+>
+  <div class="filter-container">
+    <label for="naziv">Naziv:</label>
+    <input
+      type="text"
+      name="naziv"
+      id="naziv"
+      value="{{ request.GET.naziv }}"
+    />
 
-  <label for="datum_pocetka">Datum početka od:</label>
-  <input
-    type="date"
-    name="datum_pocetka"
-    id="datum_pocetka"
-    value="{{ request.GET.datum_pocetka }}"
-  />
+    <label for="datum_pocetka">Datum početka od:</label>
+    <input
+      type="date"
+      name="datum_pocetka"
+      id="datum_pocetka"
+      value="{{ request.GET.datum_pocetka }}"
+    />
 
-  <label for="datum_zavrsetka">Datum završetka do:</label>
-  <input
-    type="date"
-    name="datum_zavrsetka"
-    id="datum_zavrsetka"
-    value="{{ request.GET.datum_zavrsetka }}"
-  />
+    <label for="datum_zavrsetka">Datum završetka do:</label>
+    <input
+      type="date"
+      name="datum_zavrsetka"
+      id="datum_zavrsetka"
+      value="{{ request.GET.datum_zavrsetka }}"
+    />
 
-  <button type="submit">Filtriraj</button>
+    <button type="submit">Filtriraj</button>
+  </div>
 </form>
-<p></p>
+
 <hr />
+
 <h2>Popis natjecanja</h2>
-<ul>
-  {% for natjecanje in natjecanja %}
-  <li>
-    <a href="{{ natjecanje.get_absolute_url }}">{{ natjecanje.naziv }}</a>
-  </li>
-  {% endfor %}
-</ul>
-<p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Naziv</th>
+      <th>Datum početka</th>
+      <th>Datum završetka</th>
+      <th>Detljai</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for natjecanje in natjecanja %}
+    <tr>
+      <td>{{ natjecanje.naziv }}</td>
+      <td>{{ natjecanje.datum_pocetka|date:"d-m-Y" }}</td>
+      <td>{{ natjecanje.datum_zavrsetka|date:"d-m-Y" }}</td>
+      <td>
+        <a href="{{ natjecanje.get_absolute_url }}">
+          <button type="button">Detalji natjecanja</button>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p class="gumbi">
   <a href="{% url 'main:natjecanje-create' %}">
     <button type="button">Dodaj natjecanje</button>
   </a>
+  <a href="/"><button type="button">Natrag na početnu stranicu</button></a>
+  <a href="/logout"><button type="button">Odjavi se</button></a>
 </p>
-<div style="display: flex; gap: 10px; align-items: center">
-  <a href="/">
-    <button type="button">Natrag na početnu stranicu</button>
-  </a>
-  <a href="/logout">
-    <button type="button">Odjavi se</button>
-  </a>
-</div>
+
 {% endblock %}

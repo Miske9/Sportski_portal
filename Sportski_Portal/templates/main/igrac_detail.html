@@ -1,10 +1,11 @@
 {% extends 'base_generic.html' %} {% block content %}
-<p><b>Ime igrača: </b>{{ igraci.ime }}</p>
-<p><b>Prezime igrača: </b> {{ igraci.prezime }}</p>
-<p><b>Tim igrača: </b> {{ igraci.tim.naziv }}</p>
-<p><b>Broj na dresu: </b> {{ igraci.broj_dresa }}</p>
-<hr />
-<div>
+<h2>Detalji o igraču</h2>
+<p class="tim"><b>Ime igrača: </b>{{ igraci.ime }}</p>
+<p class="tim"><b>Prezime igrača: </b> {{ igraci.prezime }}</p>
+<p class="tim"><b>Tim igrača: </b> {{ igraci.tim.naziv }}</p>
+<p class="tim"><b>Broj na dresu: </b> {{ igraci.broj_dresa }}</p>
+
+<div class="gumbi">
   <a href="{% url 'main:igrac-list' %}">
     <button type="button" class="btn btn-primary">
       Natrag na popis igrača

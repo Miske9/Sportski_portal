@@ -1,28 +1,38 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
-{% if form.errors %}
-<h3>Unos nije ispravan.</h3>
-{% endif %} {% if next %} {% if user.is_authenticated %}
-<p>
-  Your account doesn't have access to this page. To proceed, please login with
-  an account that has access.
-</p>
-{% else %}
-<p>Molimo Vas prijavite se!</p>
-{% endif %} {% endif %}
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+  </head>
+  <body class="{% block body_class %}default-page{% endblock %}">
+    <div class="login-page">
+      <div class="login-container">
+        {% if form.errors %}
+        <h3>Unos nije ispravan.</h3>
+        {% endif %} {% if next %} {% if user.is_authenticated %}
+        <p>
+          Vaš nalog nema pristup ovoj stranici. Prijavite se sa odgovarajućim
+          nalogom.
+        </p>
+        {% else %}
+        <p>Molimo Vas prijavite se!</p>
+        {% endif %} {% endif %}
 
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  <table>
-    <tr>
-      <td>{{ form.username.label_tag }}</td>
-      <td>{{ form.username }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.password.label_tag }}</td>
-      <td>{{ form.password }}</td>
-    </tr>
-  </table>
-  <input type="submit" value="login" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
+        <form method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+          <table>
+            <tr>
+              <td>{{ form.username.label_tag }}</td>
+              <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+              <td>{{ form.password.label_tag }}</td>
+              <td>{{ form.password }}</td>
+            </tr>
+          </table>
+          <input type="submit" value="Prijava" />
+          <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,61 +1,65 @@
-{% extends 'base_generic.html' %}{% block content %}
-<h2>Filtriraj utakmice</h2>
-<form method="get" action="{% url 'main:utakmica-list' %}">
-  <label for="natjecanje">Natjecanje:</label>
-  <select name="natjecanje" id="natjecanje">
-      <option value="">--- Odaberite natjecanje ---</option>
-      {% for natjecanje in natjecanja %}
-          <option value="{{ natjecanje.id }}" {% if request.GET.natjecanje == natjecanje.id|stringformat:"s" %}selected{% endif %}>
-              {{ natjecanje.naziv }}
-          </option>
-      {% endfor %}
-  </select>
+{% extends 'base_generic.html' %}
 
-  <label for="datum_od">Datum od:</label>
-  <input type="date" name="datum_od" value="{{ request.GET.datum_od }}">
+{% block content %}
+<h2>Utakmice</h2>
+<form method="get" action="{% url 'main:utakmica-list' %}" class="filter-form">
+  <div class="filter-container">
+    <label for="natjecanje">Natjecanje:</label>
+    <select name="natjecanje" id="natjecanje">
+        <option value="">--- Odaberite natjecanje ---</option>
+        {% for natjecanje in natjecanja %}
+            <option value="{{ natjecanje.id }}" {% if request.GET.natjecanje == natjecanje.id|stringformat:"s" %}selected{% endif %}>
+                {{ natjecanje.naziv }}
+            </option>
+        {% endfor %}
+    </select>
 
-  <label for="datum_do">Datum do:</label>
-  <input type="date" name="datum_do" value="{{ request.GET.datum_do }}">
+    <label for="datum_od">Datum od:</label>
+    <input type="date" name="datum_od" value="{{ request.GET.datum_od }}">
 
-  <button type="submit">Filtriraj</button>
+    <label for="datum_do">Datum do:</label>
+    <input type="date" name="datum_do" value="{{ request.GET.datum_do }}">
+
+    <button type="submit">Filtriraj</button>
+  </div>
 </form>
 
-<table>
-  <thead>
-      <tr>
-          <th>Natjecanje</th>
-          <th>Tim 1</th>
-          <th>Tim 2</th>
-          <th>Rezultat</th>
-      </tr>
-  </thead>
-  <tbody>
-      {% for utakmica in utakmice %}
-      <tr>
-          <td>{{ utakmica.natjecanje.naziv }}</td>
-          <td>{{ utakmica.tim1.naziv }}</td>
-          <td>{{ utakmica.tim2.naziv }}</td>
-          <td>{{ utakmica.rezultat_tim1 }} - {{ utakmica.rezultat_tim2 }}</td>
-          <td>
-            <a href="{{ utakmica.get_absolute_url }}"
-              >Detalji utakmice</a
-            >
-          </td>
-      </tr>
-      {% endfor %}
-  </tbody>
-</table>
-<p>
-  <a href="{% url 'main:utakmica-create' %}">
-    <button type="button">Dodaj utakmicu</button>
-  </a>
-</p>
-<div style="display: flex; gap: 10px; align-items: center">
-  <a href="/">
-    <button type="button">Natrag na početnu stranicu</button>
-  </a>
-  <a href="/logout">
-    <button type="button">Odjavi se</button>
-  </a>
+<div class="matches-container">
+  <table>
+    <thead>
+        <tr>
+            <th>Natjecanje</th>
+            <th>Tim 1</th>
+            <th>Tim 2</th>
+            <th>Rezultat</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for utakmica in utakmice %}
+        <tr>
+            <td>{{ utakmica.natjecanje.naziv }}</td>
+            <td>{{ utakmica.tim1.naziv }}</td>
+            <td>{{ utakmica.tim2.naziv }}</td>
+            <td>{{ utakmica.rezultat_tim1 }} - {{ utakmica.rezultat_tim2 }}</td>
+            <td>
+              <a href="{{ utakmica.get_absolute_url }}">
+                <button type="button">Detalji utakmice</button>
+              </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</br>
+    <div class="gumbi">
+      <a href="{% url 'main:utakmica-create' %}">
+        <button type="button">Dodaj utakmicu</button>
+      </a>
+      <a href="/"><button type="button">Natrag na početnu stranicu</button></a>
+      <a href="/logout"><button type="button">Odjavi se</button></a>
+    </div>
+</br>
+</br>
 </div>
 {% endblock %}
