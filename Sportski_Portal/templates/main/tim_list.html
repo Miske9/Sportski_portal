@@ -30,9 +30,8 @@
 <table>
   <thead>
     <tr>
-      <th>Naziv</th>
+      <th>Naziv tima</th>
       <th>Grad</th>
-      <th>Natjecanje</th>
       <th>Detalji</th>
     </tr>
   </thead>
@@ -41,7 +40,6 @@
     <tr>
       <td>{{ tim.naziv }}</td>
       <td>{{ tim.grad }}</td>
-      <td>{{ tim.natjecanje.naziv }}</td>
       <td><a href="{{ tim.get_absolute_url }}"><button type="button">Detalji</button></a></td>
     </tr>
     {% endfor %}

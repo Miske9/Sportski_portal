@@ -1,24 +1,30 @@
 {% extends 'base_generic.html' %} {% block content %}
-<h2>Detalji o timu</h2>
-<p class="tim"><b>Ime kluba: </b>{{ timovi.naziv }}</p>
-<p class="tim"><b>Grad gdje se nalazi klub: </b> {{ timovi.grad }}</p>
-<p class="tim"><b>Natjecanje: </b> {{ timovi.natjecanje.naziv }}</p>
-<div class="gumbi">
-  <a href="{% url 'main:tim-list' %}">
-    <button type="button" class="btn btn-primary">
-      Natrag na popis timova
-    </button>
-  </a>
-  <a href="{% url 'main:tim-delete' timovi.pk %}">
-    <button type="button" class="btn btn-danger">Obriši</button>
-  </a>
-  <a href="{% url 'main:tim-update' timovi.pk %}">
-    <button type="button" class="btn btn-warning">Uredi</button>
-  </a>
+<div class="form-page">
+  <div class="form-container">
+    <h2>Detalji o timu</h2>
+    <p class="tim"><b>Ime kluba: </b>{{ timovi.naziv }}</p>
+    <p class="tim"><b>Grad gdje se nalazi klub: </b> {{ timovi.grad }}</p>
+    <div class="gumbi">
+      <p></p>
+      <a href="{% url 'main:tim-list' %}">
+        <button type="button" class="btn btn-primary">
+          Natrag na popis timova
+        </button>
+      </a>
+      <p></p>
+      <a href="{% url 'main:tim-delete' timovi.pk %}">
+        <button type="button" class="btn btn-danger">Obriši</button>
+      </a>
+      <p></p>
+      <a href="{% url 'main:tim-update' timovi.pk %}">
+        <button type="button" class="btn btn-warning">Uredi</button>
+      </a>
+    </div>
+    <p>
+      <a href="/logout"
+        ><button type="button" class="btn btn-primary">Odjavi se</button></a
+      >
+    </p>
+  </div>
 </div>
-<p>
-  <a href="/logout"
-    ><button type="button" class="btn btn-primary">Odjavi se</button></a
-  >
-</p>
 {% endblock %}

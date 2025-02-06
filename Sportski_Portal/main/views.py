@@ -247,7 +247,8 @@ class IgracListView(LoginRequiredMixin,ListView):
         if tim_id:
             queryset = queryset.filter(tim__id=tim_id)
         if broj_dresa:
-            queryset = queryset.filter(broj_dresa=broj_dresa)
+            if broj_dresa.isdigit():
+                queryset = queryset.filter(broj_dresa=broj_dresa)
 
         return queryset
     

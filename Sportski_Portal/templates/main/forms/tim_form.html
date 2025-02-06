@@ -1,8 +1,12 @@
 {% extends "base_generic.html" %} {% block content %}
-<h2>{% if object %}Ažuriraj tim{% else %}Dodaj novi tim{% endif %}</h2>
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit" class="btn btn-primary">Spremi</button>
-  <a href="{% url 'main:tim-list' %}" class="btn btn-secondary">Nazad</a>
-</form>
+<div class="form-page">
+  <div class="form-container">
+    <h2>{% if object %}Ažuriraj tim{% else %}Dodaj novi tim{% endif %}</h2>
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Spremi</button>
+      <a href="{% url 'main:tim-list' %}" class="btn btn-secondary">Nazad</a>
+    </form>
+  </div>
+</div>
 {% endblock %}

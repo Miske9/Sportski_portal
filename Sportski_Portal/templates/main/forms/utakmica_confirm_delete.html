@@ -1,11 +1,17 @@
 {% extends "base_generic.html" %} {% block content %}
-<h2>Potvrdi brisanje utakmice</h2>
-<p>Jeste li sigurni da želite obrisati utakmicu "{{ object }}"?</p>
-<form method="post">
-  {% csrf_token %}
-  <button type="submit" class="btn btn-danger">Obriši</button>
-  <a href="{% url 'main:utakmica-detail' object.id %}" class="btn btn-secondary"
-    >Nazad</a
-  >
-</form>
+<div class="form-page">
+  <div class="form-container">
+    <h2>Potvrdi brisanje utakmice</h2>
+    <p>Jeste li sigurni da želite obrisati utakmicu "<b>{{ object }}</b>"?</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Obriši</button>
+      <a
+        href="{% url 'main:utakmica-detail' object.id %}"
+        class="btn btn-secondary"
+        >Nazad</a
+      >
+    </form>
+  </div>
+</div>
 {% endblock %}

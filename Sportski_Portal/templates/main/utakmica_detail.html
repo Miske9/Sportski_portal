@@ -1,26 +1,33 @@
 {% extends 'base_generic.html' %} {% block content %}
-<h2>
-  <b>Utakmica: </b>{{ utakmice.tim1 }} vs {{utakmice.tim2}}
-  ({{utakmice.rezultat_tim1}} - {{utakmice.rezultat_tim2}})
-</h2>
-<p><b> Datum: </b> {{utakmice.datum}}</p>
+<div class="form-page">
+  <div class="form-container">
+    <h2>
+      <b>Utakmica: </b>{{ utakmice.tim1 }} vs {{utakmice.tim2}}
+      ({{utakmice.rezultat_tim1}} - {{utakmice.rezultat_tim2}})
+    </h2>
+    <p><b> Datum: </b> {{utakmice.datum}}</p>
 
-<div class="gumbi">
-  <a href="{% url 'main:utakmica-list' %}">
-    <button type="button" class="btn btn-primary">
-      Natrag na popis utakmica
-    </button>
-  </a>
-  <a href="{% url 'main:utakmica-delete' utakmice.pk %}">
-    <button type="button" class="btn btn-danger">Obriši</button>
-  </a>
-  <a href="{% url 'main:utakmica-update' utakmice.pk %}">
-    <button type="button" class="btn btn-warning">Uredi</button>
-  </a>
+    <div class="gumbi">
+      <p></p>
+      <a href="{% url 'main:utakmica-list' %}">
+        <button type="button" class="btn btn-primary">
+          Natrag na popis utakmica
+        </button>
+      </a>
+      <p></p>
+      <a href="{% url 'main:utakmica-delete' utakmice.pk %}">
+        <button type="button" class="btn btn-danger">Obriši</button>
+      </a>
+      <p></p>
+      <a href="{% url 'main:utakmica-update' utakmice.pk %}">
+        <button type="button" class="btn btn-warning">Uredi</button>
+      </a>
+    </div>
+    <p>
+      <a href="/logout"
+        ><button type="button" class="btn btn-primary">Odjavi se</button></a
+      >
+    </p>
+    {% endblock %}
+  </div>
 </div>
-<p>
-  <a href="/logout"
-    ><button type="button" class="btn btn-primary">Odjavi se</button></a
-  >
-</p>
-{% endblock %}

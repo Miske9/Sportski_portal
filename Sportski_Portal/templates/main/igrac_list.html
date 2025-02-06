@@ -1,4 +1,5 @@
-{% extends 'base_generic.html' %} {% block content %}
+{% extends 'base_generic.html' %} 
+{% block content %}
 <h2>Filtriraj igrače</h2>
 <form method="get" action="{% url 'main:igrac-list' %}" class="filter-form">
   <div class="filter-container">
@@ -20,6 +21,14 @@
       id="broj_dresa"
       value="{{ request.GET.broj_dresa }}"
     />
+
+    <label for="tim">Tim:</label>
+    <select name="tim" id="tim">
+      <option value="">Odaberite tim</option>
+      {% for tim in timovi %}
+        <option value="{{ tim.id }}" {% if tim.id == request.GET.tim %} selected {% endif %}>{{ tim.naziv }}</option>
+      {% endfor %}
+    </select>
 
     <button type="submit">Filtriraj</button>
   </div>
@@ -44,9 +53,9 @@
       <td>{{ igrac.tim.naziv }}</td>
       <td>{{ igrac.broj_dresa }}</td>
       <td>
-        <a href="{{ igrac.get_absolute_url }}"
-          ><button type="button">Detalji o igraču</button></a
-        >
+        <a href="{{ igrac.get_absolute_url }}">
+          <button type="button">Detalji o igraču</button>
+        </a>
       </td>
     </tr>
     {% endfor %}
