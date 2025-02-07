@@ -11,6 +11,7 @@
           Natrag na popis timova
         </button>
       </a>
+      {% if user.is_superuser %}
       <p></p>
       <a href="{% url 'main:tim-delete' timovi.pk %}">
         <button type="button" class="btn btn-danger">Obriši</button>
@@ -19,12 +20,8 @@
       <a href="{% url 'main:tim-update' timovi.pk %}">
         <button type="button" class="btn btn-warning">Uredi</button>
       </a>
+      {% endif %}
     </div>
-    <p>
-      <a href="/logout"
-        ><button type="button" class="btn btn-primary">Odjavi se</button></a
-      >
-    </p>
   </div>
 </div>
 {% endblock %}

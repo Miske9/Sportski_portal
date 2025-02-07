@@ -16,7 +16,6 @@
         <li><a href="/igraci">Igraci</a></li>
       </ul>
     </nav>
-
     <h1>Početna stranica Sportskog Portala</h1>
   </br>
     
@@ -24,7 +23,9 @@
     <div class="background-section">
       <div class="auth-info">
         <p>Vaše ime: {{ user.username }}</p>
+        {% if user.is_superuser %}
         <p><a href="/admin-korisnik" class="auth-button">ADMIN</a></p>
+        {% endif %}
         <p><a href="/logout" class="auth-button">Odjavi se</a></p>
       </div>
 

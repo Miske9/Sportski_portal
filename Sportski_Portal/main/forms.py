@@ -1,5 +1,5 @@
 from django import forms # type: ignore
-from .models import Natjecanje, Tim, Utakmica, Igrac
+from .models import *
 
 class NatjecanjeForm(forms.ModelForm):
     class Meta:

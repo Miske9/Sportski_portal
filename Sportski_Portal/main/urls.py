@@ -3,7 +3,7 @@ from . import views
 from main.views import *
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views_api import NatjecanjeViewSet, TimViewSet, UtakmicaViewSet, IgracViewSet
+from .views_api import *
 
 app_name='main'
 

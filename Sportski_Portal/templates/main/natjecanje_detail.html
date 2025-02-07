@@ -36,18 +36,14 @@
       Natrag na popis natjecanja
     </button>
   </a>
+  {% if user.is_superuser %}
   <a href="{% url 'main:natjecanje-delete' natjecanje.pk %}">
     <button type="button" class="btn btn-danger">Obriši</button>
   </a>
   <a href="{% url 'main:natjecanje-update' natjecanje.pk %}">
     <button type="button" class="btn btn-warning">Uredi</button>
   </a>
+  {% endif %}
 </div>
-
-<p>
-  <a href="/logout">
-    <button type="button" class="btn btn-primary">Odjavi se</button>
-  </a>
-</p>
 
 {% endblock %}

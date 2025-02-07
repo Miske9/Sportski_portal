@@ -63,14 +63,15 @@
 </table>
 
 <p class="gumbi">
+  {% if user.is_superuser %}
   <a href="{% url 'main:igrac-create' %}">
     <button type="button">Dodaj igrača</button>
   </a>
+  {% endif %}
+</p>
+<p class="gumbi">
   <a href="/">
     <button type="button">Natrag na početnu stranicu</button>
-  </a>
-  <a href="/logout">
-    <button type="button">Odjavi se</button>
   </a>
 </p>
 </br>

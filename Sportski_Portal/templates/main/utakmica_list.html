@@ -52,12 +52,16 @@
     </tbody>
   </table>
 </br>
+{% if user.is_superuser %}
     <div class="gumbi">
       <a href="{% url 'main:utakmica-create' %}">
         <button type="button">Dodaj utakmicu</button>
       </a>
+      {% endif %}
+    </div>
+</br>
+    <div class="gumbi">
       <a href="/"><button type="button">Natrag na početnu stranicu</button></a>
-      <a href="/logout"><button type="button">Odjavi se</button></a>
     </div>
 </br>
 </br>

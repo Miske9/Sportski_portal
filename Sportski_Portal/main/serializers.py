@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Natjecanje, Tim, Utakmica, Igrac
+from .models import *
 
 class NatjecanjeSerializer(serializers.ModelSerializer):
     class Meta:

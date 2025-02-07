@@ -2,7 +2,7 @@ import factory
 from factory.django import DjangoModelFactory  # type: ignore
 from django.utils import timezone  # type: ignore
 import random
-from main.models import Natjecanje, Tim, Utakmica, Igrac
+from main.models import *
 
 class NatjecanjeFactory(DjangoModelFactory):
     class Meta:

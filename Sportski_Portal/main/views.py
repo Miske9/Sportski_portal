@@ -11,7 +11,7 @@ from django.contrib.auth.forms import UserCreationForm  # type: ignore
 from django.contrib.auth import authenticate, login, logout  # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
 from django.views.generic import ListView, DetailView  # type: ignore
-from main.models import Natjecanje, Tim, Igrac, Utakmica
+from main.models import *
 
 def index(request):
     return render(request, 'index.html')

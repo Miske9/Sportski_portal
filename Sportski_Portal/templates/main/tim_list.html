@@ -47,14 +47,15 @@
 </table>
 
 <p class = "gumbi">
+  {% if user.is_superuser %}
     <a href="{% url 'main:tim-create' %}">
         <button type="button">Dodaj tim</button>
     </a>
-    <a href="/">
-      <button type="button">Natrag na početnu stranicu</button>
-    </a>
-    <a href="/logout">
-        <button type="button">Odjavi se</button>
-    </a>
+  {% endif %}
+</p>
+<p class = "gumbi">
+  <a href="/">
+    <button type="button">Natrag na početnu stranicu</button>
+  </a>
 </p>
 {% endblock %}
